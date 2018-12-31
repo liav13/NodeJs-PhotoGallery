@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <% include templates/partial.ejs %>
+  
+<div class="container">
+    <% images.forEach(function(image){ %>
+    <img src="images/<%= image.path %>"/>
+    <% }) %>
+</div>
+
+  </body>
+</html>
