@@ -2,7 +2,7 @@ var Photos = require('../models/Photos');
 var path = require('path');
 var fs = require('fs');
 var join = path.join;
-const sharp = require ('sharp')
+const sharp = require('sharp')
 
 // Function to get the upload form
 function getUploadForm(req, res, next) {
@@ -24,29 +24,60 @@ function listImages(req, res, next) {
 function uploadImage(dir) {
   return function (req, res, next) {
 
+
     //read photos names
     // let myUploadNames = fs.readdirSync('uploads');
     // console.log(myUploadNames);
 
+    // Get the number of images
+    var counter = req.files.length;
 
-    // Rename image
-    fs.rename(req.file.path, path.join(dir, req.file.originalname))
-    // add image to db
-    Photos.create({
-      name: req.file.originalname,
-      path: req.file.originalname
+    // Loop on all images
+    req.files.forEach(function (file, index, array) {
+
+      // Rename image
+      fs.rename(file.path, path.join(dir, file.originalname),
+        function (err) {
+          if (err) throw err;
+
+          // add image to db
+          Photos.create({
+            name: file.originalname,
+            path: file.originalname
+          }, function (err, data) {
+            var folders = ["100", "200", "300", "400"];
+            folders.forEach(function (folder) {
+              sharp(path.join(dir, file.originalname))
+                .resize({ height: folder })
+                .toFile(path.join(dir, folder, file.originalname))
+                .then(data => {
+                })
+            });
+            // update the counter for the remaining images
+            --counter;
+
+            if (counter === 0) {
+              redirectToHome(res);
+            }
+          });
+        });
+
     });
-    console.log(req.file);
-    Photos.find({}, function (err, images) {
-      console.log(images)
-      res.render('photos', { title: 'aaa', images: images });
-    })
-    // resize
-//     sharp('req.file.originalname').resize(200).toFile(req.file.path, path.join(dir, req.file.originalname));
-//     sharp();
- }
-  
+
+  }
 };
+
+function redirectToHome(res) {
+  Photos.find({}, function (err, images) {
+    console.log(images)
+    res.render('photos', {
+      title: 'uploads',
+      images: images
+    });
+  })
+
+}
+
 
 // Expose the public methods
 module.exports = {
