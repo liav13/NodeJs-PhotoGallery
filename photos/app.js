@@ -8,6 +8,7 @@ var sharp = require('sharp');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var sizeRouter = require('./routes/size');
 var photos = require('./routes/photos');
 var app = express();
 
@@ -53,6 +54,7 @@ app.post('/upload', photos.uploadImage(app.get('photos')));
 
 
 app.use('/', indexRouter);
+app.use('/size', sizeRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

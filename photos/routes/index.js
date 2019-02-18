@@ -44,4 +44,5 @@ var photos = require('../routes/photos');
 router.get('/', photos.listImages);
 
 
+
 module.exports = router;

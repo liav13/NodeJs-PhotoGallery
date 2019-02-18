@@ -17,7 +17,8 @@ function listImages(req, res, next) {
     console.log('Database cleard');
     res.render('photos', {
       title: 'Express',
-      images: files
+      images: files,
+      size: req.params['size'] || ''
     });
   });
 }
@@ -48,7 +49,7 @@ function uploadImage(dir) {
             var folders = ["100", "200", "300", "400"];
             folders.forEach(function (folder) {
               sharp(path.join(dir, file.originalname))
-                .resize({ height: folder })
+                .resize(parseInt(folder))
                 .toFile(path.join(dir, folder, file.originalname))
                 .then(data => {
                 })
@@ -70,11 +71,13 @@ function uploadImage(dir) {
 function redirectToHome(res) {
   Photos.find({}, function (err, images) {
     console.log(images)
-    res.render('photos', {
-      title: 'uploads',
-      images: images
-    });
+    // res.render('photos', {
+    //   title: 'uploads',
+    //   images: images
+    // });
+    res.redirect('/');
   })
+  
 
 }
 
