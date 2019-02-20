@@ -17,6 +17,7 @@ nav{
   display:flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  align-items:center;
 }
 img{
   margin-bottom:25PX;

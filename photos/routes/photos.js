@@ -49,7 +49,7 @@ function uploadImage(dir) {
             var folders = ["100", "200", "300", "400"];
             folders.forEach(function (folder) {
               sharp(path.join(dir, file.originalname))
-                .resize(parseInt(folder))
+                .resize(parseInt(folder),parseInt(folder))
                 .toFile(path.join(dir, folder, file.originalname))
                 .then(data => {
                 })
