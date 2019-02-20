@@ -5,8 +5,11 @@ var photos = require('../routes/photos');
 
 /* GET home page. */
 
-router.get('/:size',function (req,res,next){
-    Photos.find({}, function (err, files) {
+router.get('/:size/:page',function (req,res,next){
+    Photos.find({},
+      null,
+      {limit: 9, skip: 9*(req.params.page-1)},
+      function (err, files) {
         console.log('Database cleard');
         res.render('photos', {
           title: 'Express',
