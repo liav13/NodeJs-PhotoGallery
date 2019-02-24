@@ -14,7 +14,8 @@ router.get('/:size/:page',function (req,res,next){
         res.render('photos', {
           title: 'Express',
           images: files,
-          size: req.params['size'] || ''
+          size: req.params['size'] || '',
+          page: req.params['page']
         });
       });
 });
