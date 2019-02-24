@@ -3,14 +3,29 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
-}
 nav{
   display: flex;
   justify-content: space-around;
   border:2px solid black;
   height: 100px;
+}
+a {
+  color: #00B7FF;
+  display:flex;
+  flex-wrap: wrap;
+  align-items:center;
+  
+  /* a {
+    color: #00B7FF;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: black;
+    padding: 10px;
+    border: 1px solid black;
+    background: lime;
+    box-shadow: 1px 1px 4px rgb(128,128,128);
+} */
 }
 
 .container{
