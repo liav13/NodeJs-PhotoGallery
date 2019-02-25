@@ -15,11 +15,12 @@ function listImages(req, res, next) {
   //   fs.readir({});
   Photos.find({}, function (err, files) {
     console.log('Database cleard');
-    res.render('photos', {
-      title: 'Express',
-      images: files,
-      size: req.params['size'] || ''
-    });
+   res.redirect('/size/200/1')
+  //  res.render('photos', {
+  //   title: 'Express',
+  //   images: files,
+  //   size: req.params['size'] || ''
+  // });
   });
 }
 function uploadImage(dir) {

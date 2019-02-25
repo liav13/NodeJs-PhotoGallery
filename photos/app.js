@@ -25,27 +25,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// const storage = multer.diskStorage({
-//   destination: './uploads/',
-//   filename : function(req,file,cb) {
-//     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
-//   }
-// })
-
-// //send the photos to upload folder 
-// app.use(multer({
-//storage: storage}).single('photo'));
-
 //send the photos to upload folder 
 app.use(multer({
   dest: './uploads/'
 }).array('photo')
-
-  // , function(req,res,next){
-  //   console.log(req.file);
-  //   res.render ('index');}
 );
-
 
 app.use(express.static(path.join(__dirname, 'public')));
 

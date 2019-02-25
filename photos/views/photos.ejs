@@ -9,11 +9,12 @@
 <div class="container">
     <% images.forEach(function(image){ %>
     <img src="/images/<%= size %>/<%= image.path %>"/>
-    <% }) %>
+    <%  }) %>
  </div>
  <div>
-    <a href="/size/<%= size %>/<%=(parseInt(page)+1)%>">Next</a> 
-    <a href="/size/<%= size %>/<%=(parseInt(page)-1)%>">Previous</a> 
+<a class="previous" href="/size/<%= size %>/<%=(parseInt(page)-1)%>">&laquo; Previous</a> 
+<a class="next" href="/size/<%= size %>/<%=(parseInt(page)+1)%>">Next &raquo;</a> 
+    
 </div>
 
   </body>
