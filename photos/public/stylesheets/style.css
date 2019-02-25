@@ -77,3 +77,7 @@ body{background-color: yellow;}
 and (min-width: 1200px) {
 body{background-color: red;}
 } */
+
+[data-page="0"]{
+  display: none;
+}

@@ -4,7 +4,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-  <% include templates/partial.ejs %>
+  <%- include nav %>
   
 <div class="container">
     <% images.forEach(function(image){ %>
@@ -12,7 +12,7 @@
     <%  }) %>
  </div>
  <div>
-<a class="previous" href="/size/<%= size %>/<%=(parseInt(page)-1)%>">&laquo; Previous</a> 
+<a class="previous" data-page="<%=(parseInt(page)-1)%>" href="/size/<%= size %>/<%=(parseInt(page)-1)%>">&laquo; Previous</a> 
 <a class="next" href="/size/<%= size %>/<%=(parseInt(page)+1)%>">Next &raquo;</a> 
     
 </div>
